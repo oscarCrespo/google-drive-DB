@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Google Drive CMS Test</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#wrapper{
+			text-align: center;
+		}
+		i, h1, .linkD{
+			display: block;
+			padding: 1%;
+		}
+		.cluster{
+			width: 40%;
+			min-height: 250px;
+			display: inline-block;
+			border-radius: 10px;
+			box-shadow: 0 0 9px rgba(0,0,0,0.3);
+			vertical-align: top;
+			margin: 20px 1%;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+			overflow: hidden;
+			position: relative;
+			
+		}
+		h2{
+			font-size: 30px;
+			color: gray;
+			float: 	left;
+			padding-left: 10px;	
+		}
+
+		p{
+			min-height: 70px;
+			width: 100%;	
+			-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				box-sizing: border-box;	
+			padding: 10px;
+			clear: both;
+			text-align: left; 	
+		}
+		.logo{
+			float: 	left;
+			width: 20px;
+			height: 20px;
+			margin-left: 15px;	margin-top: 10px;	
+			-webkit-background-size: cover;
+			background-size: cover;
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+		figure{
+			width: 100%;
+			height: 150px;
+			-webkit-background-size: cover;
+			background-size: cover;
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+		.link{
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			font-size: 12px;
+			color: gray;
+		}
+		.link a{
+			color: gray;
+		}
+	</style>
+</head>
+<body>
+	<h1>Prueba</h1>
+	<i>Instrucciones: <br> 
+		En el documento editable de google Drive esta el control del sitio,
+		cada fila equivale a un producto, se pueden editar los campos independientemente, 
+		para agregar un nuevo producto solamente se requiere agregar una nueva fila y llenar los campos correspondientes.
+		Las imagenes tienen que estar alojadas en un sitio web asi que solo se agrega el link a ellas <br><br>
+	</i>
+	<a class="linkD" href="https://docs.google.com/spreadsheets/d/13bAT-OxVLjpC6vLCLYAitt-02tvxus9caliVWwPDJ1g/edit#gid=0" target="_blank">Documento Editable</a>
+	<div id="wrapper">
+		
+	</div>
+</body>
+</html>
+<script>
+	// https://docs.google.com/spreadsheets/d/13bAT-OxVLjpC6vLCLYAitt-02tvxus9caliVWwPDJ1g/pub?output=csv
+	// http://spreadsheets.google.com/feeds/feed/13bAT-OxVLjpC6vLCLYAitt-02tvxus9caliVWwPDJ1g/public/basic?alt=json-in-script&callback=myFunc
+	var spreadsheetID='13bAT-OxVLjpC6vLCLYAitt-02tvxus9caliVWwPDJ1g';
+	
+	// Make sure it is public or set to Anyone with link can view 
+	var url = "https://spreadsheets.google.com/feeds/list/" + spreadsheetID + "/od6/public/values?alt=json";
+	var entry;
+	$.getJSON(url, function(data) {
+	
+	 entry = data.feed.entry;
+	 guardaDatos();
+	});
+
+	function guardaDatos () {
+		var data={};
+		for (i in entry){
+			data.nombre=entry[i].gsx$nombre.$t;
+			data.descripcion=entry[i].gsx$descripcion.$t;
+			data.imagen=entry[i].gsx$imagen.$t;
+			//data.activo=entry[i].gsx$activo.$t;
+			data.link=entry[i].gsx$link.$t;
+			data.logoimagen=entry[i].gsx$logoimagen.$t;
+			if (entry[i].gsx$activo.$t=="si") {
+				pintaDatos(data);
+			}else{
+				console.log("no se pinta")
+			}
+
+		}
+		// $(entry).each(function(){
+		//   // Column names are name, age, etc.
+		//   //$(".results").html('<h2>'+this.gsx$name.$t+'</h2><p>'+this.gsx$age.$t+'</p>')
+		//   //$('.results').prepend('<h2>'+this.gsx$name.$t+'</h2><p>'+this.gsx$age.$t+'</p>');
+
+		//   data.nombre=this.gsx$nombre.$t;
+		//   data.descripcion=this.gsx$descripcion.$t;
+		//   data.imagen=this.gsx$imagen.$t;
+		//   //data.activo=this.gsx$activo.$t;
+		//   data.link=this.gsx$link.$t;
+		//   data.logoimagen=this.gsx$logoimagen.$t;
+
+		// });
+		
+	}
+	function pintaDatos (datos){
+		var cluster='<div class="cluster"><h2>'+datos.nombre+'</h2><div class="logo" style="background-image:url(\''+datos.logoimagen+'\')"></div><p>'+datos.descripcion+'</p><figure style="background-image:url(\''+datos.imagen+'\')"></figure><div class="link"><a href="'+datos.link+'">Mas info</a></div></div>';
+		$("#wrapper").append(cluster);
+	}
+</script>
+
