@@ -3,18 +3,39 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Google Drive CMS Test</title>
+	<link href='https://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<style>
 		*{
 			margin: 0;
 			padding: 0;
+			font-family: 'Ubuntu', sans-serif;
 		}
 		#wrapper{
 			text-align: center;
 		}
+		header{
+			background: #3E3E3E;
+			    width: 100%;
+			    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+			    color: #00FFD2;
+			    border-radius: 0 0 50px;
+			    border-top: 3px solid #00FFD2;
+			    margin-bottom: 40px;
+		}
+		h1{
+			font-size: 20px;
+			font-weight: 200;
+		}
 		i, h1, .linkD{
 			display: block;
 			padding: 1%;
+			border-top: 1px dashed #3E3E3E;
+		}
+		.linkD{
+			vertical-align: top;
+			
 		}
 		.cluster{
 			width: 40%;
@@ -29,42 +50,71 @@
 			box-sizing: border-box;
 			overflow: hidden;
 			position: relative;
+
 			
 		}
 		h2{
-			font-size: 30px;
-			color: gray;
-			float: 	left;
-			padding-left: 10px;	
+			font-family: 'Montserrat', sans-serif;
+			font-size: 35px;
+			color: white;
+			/* float: left; */
+			padding-left: 10px;
+			position: absolute;
+			min-width: 30%;
+			top: 49px;
+			/* background: rgba(90, 90, 90, 0.73); */
+			/* border-radius: 0 5px 5px 0; */
+			padding: 1%;
+			font-weight: 700;
+			text-align: left;
+			text-shadow: 0 0 5px rgba(0,0,0,0.5);
 		}
 
 		p{
 			min-height: 70px;
-			width: 100%;	
+			width: 100%;
 			-webkit-box-sizing: border-box;
-				-moz-box-sizing: border-box;
-				box-sizing: border-box;	
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
 			padding: 10px;
 			clear: both;
-			text-align: left; 	
+			text-align: left;
+			position: absolute;
+			top: 105px;
+			border-radius: 0 10px 10px 0;
+			width: 40%;
+			background: rgb(255, 255, 255);
+			box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
+			font-weight: 400;
+			font-size: 14px;
 		}
 		.logo{
-			float: 	left;
-			width: 20px;
-			height: 20px;
-			margin-left: 15px;	margin-top: 10px;	
+			width: 40px;
+			height: 40px;
 			-webkit-background-size: cover;
 			background-size: cover;
 			background-position: center;
 			background-repeat: no-repeat;
+			position: absolute;
+			bottom: 20px;
+			left: 20px;
+			border-radius: 50%;
+			box-shadow: 0 0 4px rgba(0,0,0,0.8);
 		}
 		figure{
 			width: 100%;
-			height: 150px;
-			-webkit-background-size: cover;
-			background-size: cover;
+			height: 290px;
+			background-size: 110%;
+			/*-webkit-background-size: cover;
+			background-size: cover;*/
 			background-position: center;
 			background-repeat: no-repeat;
+			-webkit-transition: all 0.4s cubic-bezier(0.27, 0.04, 0.26, 0.98);;
+			-o-transition: all 0.4s cubic-bezier(0.27, 0.04, 0.26, 0.98);;
+			transition: all 0.4s cubic-bezier(0.27, 0.04, 0.26, 0.98);;
+		}
+		.cluster:hover figure{
+			background-size: 115%;
 		}
 		.link{
 			position: absolute;
@@ -76,34 +126,45 @@
 		.link a{
 			color: gray;
 		}
+		ul{
+			margin-left: 20px;
+		}
+		strong{
+			font-family: 'Montserrat', sans-serif;
+		}
 	</style>
 </head>
 <body>
-	<h1>Prueba</h1>
-	<i>Instrucciones: <br> 
-		En el documento editable de google Drive esta el control del sitio,
-		cada fila equivale a un producto, se pueden editar los campos independientemente, 
-		para agregar un nuevo producto solamente se requiere agregar una nueva fila y llenar los campos correspondientes.
-		Las imagenes tienen que estar alojadas en un sitio web asi que solo se agrega el link a ellas <br><br>
-	</i>
-	<a class="linkD" href="https://docs.google.com/spreadsheets/d/13bAT-OxVLjpC6vLCLYAitt-02tvxus9caliVWwPDJ1g/edit#gid=0" target="_blank">Documento Editable</a>
+	<header>
+		<h1>Edición por Google Drive  -  <strong>Fly Defence</strong>	</h1>
+	</header>
 	<div id="wrapper">
 		
 	</div>
+	<br><br><br>
+	<i><strong>Instrucciones: </strong><br>
+		<ul>
+			<li>En el documento editable de google Drive esta el control del sitio. </li>
+			<li>Cada fila equivale a un producto. </li> 
+			<li>Se pueden editar las columnas independientemente. </li>
+			<li>Para agregar un nuevo producto solamente se requiere agregar una nueva fila y llenar los campos correspondientes. </li>
+			<li>La fila activo sirve para ocultar o mostrar el producto, solo basta con escribir si o no </li>
+			<li>Las imagenes tienen que estar alojadas en un servidor asi que solo se agrega el link a ellas (incluso se pueden alojar en el mismo drive y publicarlas para obtener un enlace a ellas)</li>
+		</ul> 
+	</i>
+	<a class="linkD" href="https://docs.google.com/spreadsheets/d/13bAT-OxVLjpC6vLCLYAitt-02tvxus9caliVWwPDJ1g/edit#gid=0" target="_blank"><img src="https://lh6.ggpht.com/k7Z4J1IIXXJnC2NRnFfJNlkn7kZge4Zx-Yv5uqYf4222tx74wXDzW24OvOxlcpw0KcQ=w300"  width="20px" alt="">Documento Editable</a>
 </body>
 </html>
 <script>
 	// https://docs.google.com/spreadsheets/d/13bAT-OxVLjpC6vLCLYAitt-02tvxus9caliVWwPDJ1g/pub?output=csv
-	// http://spreadsheets.google.com/feeds/feed/13bAT-OxVLjpC6vLCLYAitt-02tvxus9caliVWwPDJ1g/public/basic?alt=json-in-script&callback=myFunc
 	var spreadsheetID='13bAT-OxVLjpC6vLCLYAitt-02tvxus9caliVWwPDJ1g';
-	
-	// Make sure it is public or set to Anyone with link can view 
 	var url = "https://spreadsheets.google.com/feeds/list/" + spreadsheetID + "/od6/public/values?alt=json";
 	var entry;
 	$.getJSON(url, function(data) {
 	
 	 entry = data.feed.entry;
 	 guardaDatos();
+
 	});
 
 	function guardaDatos () {
@@ -112,33 +173,17 @@
 			data.nombre=entry[i].gsx$nombre.$t;
 			data.descripcion=entry[i].gsx$descripcion.$t;
 			data.imagen=entry[i].gsx$imagen.$t;
-			//data.activo=entry[i].gsx$activo.$t;
 			data.link=entry[i].gsx$link.$t;
 			data.logoimagen=entry[i].gsx$logoimagen.$t;
 			if (entry[i].gsx$activo.$t=="si") {
 				pintaDatos(data);
 			}else{
-				console.log("no se pinta")
+				console.log(data.nombre=entry[i].gsx$nombre.$t+"no se pinta")
 			}
-
 		}
-		// $(entry).each(function(){
-		//   // Column names are name, age, etc.
-		//   //$(".results").html('<h2>'+this.gsx$name.$t+'</h2><p>'+this.gsx$age.$t+'</p>')
-		//   //$('.results').prepend('<h2>'+this.gsx$name.$t+'</h2><p>'+this.gsx$age.$t+'</p>');
-
-		//   data.nombre=this.gsx$nombre.$t;
-		//   data.descripcion=this.gsx$descripcion.$t;
-		//   data.imagen=this.gsx$imagen.$t;
-		//   //data.activo=this.gsx$activo.$t;
-		//   data.link=this.gsx$link.$t;
-		//   data.logoimagen=this.gsx$logoimagen.$t;
-
-		// });
-		
 	}
-	function pintaDatos (datos){
-		var cluster='<div class="cluster"><h2>'+datos.nombre+'</h2><div class="logo" style="background-image:url(\''+datos.logoimagen+'\')"></div><p>'+datos.descripcion+'</p><figure style="background-image:url(\''+datos.imagen+'\')"></figure><div class="link"><a href="'+datos.link+'">Mas info</a></div></div>';
+	function pintaDatos (data){
+		var cluster='<div class="cluster"><h2>'+data.nombre+'</h2><div class="logo" style="background-image:url(\''+data.logoimagen+'\')"></div><p>'+data.descripcion+'</p><figure style="background-image:url(\''+data.imagen+'\')"></figure><div class="link"><a href="'+data.link+'">Mas info</a></div></div>';
 		$("#wrapper").append(cluster);
 	}
 </script>
